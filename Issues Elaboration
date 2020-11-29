@@ -1,0 +1,20 @@
+Format: Issue-Weighting-Difficulty-MVP Status-Deadline
+
+Weighting: This will be graded from a scale of 1-5 where 1 is the lowest priority and 5 is the highest priority
+Difficulty: This will be graded from a scale of 1-5 where 1 is easy and 5 is very difficult
+MVP Status: This will either be a Yes (In the MVP) or a No (Not in the MVP)
+Deadline: This will be a date by which this function should already have been implemented into the program and tested
+
+As a user I want to be able to have multiple coffee machines on the same application. -3-4-No-Weeek 45
+As a user I want the coffee machine to work without errors -4-1-Yes-Week 44
+As a user I want the application to connect to my phone easily. -4-3-Yes-Week 44
+As a user I want the application to show notifications. -5-3-Yes-Week 43
+As a user I want to request a coffee from any distance. -5-3-Yes-Week 43
+As a user, I want the coffee machine to be able to make coffee based on a schedule -5-4-Yes-Week 44
+As a user, I want to know if the water tank in the coffee machine is empty. -3-3-Yes-Week 42
+As a user, I want the coffee machine to detect if I have placed my cup. -5-3-Yes-Week 43
+As a user, I want to control the coffee machine via voice commands. -2-5-No-Week 44
+As a user, I want a full cup of coffee. -3-1-Yes-Week 41
+As a user, I want to control the coffee machine from an website. -5-4-Yes-Week 44
+As a user, I want to control the coffee machine from an android application -3-5-No-Week 45
+As a user, I want to get notified when my coffee is ready. -4-3-Yes-Week 44

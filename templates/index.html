@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Coffee Machine</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" type="image/png" href="../static/coffee-machine.png" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+
+  <!-- This is where the body starts -->
+  <body>
+    <div class="container_notification">
+      <div class="notification isbeingmade" style="display: none;">
+        <span aria-hidden="true">&times;</span>
+        <p>⏳  Coffee is being made</p>
+      </div>
+      <div class="notification ismissing" style="display: none;">
+        <span aria-hidden="true">&times;</span>
+        <p>❗  Cup is missing</p>
+      </div>
+      <div class="notification isnoton" style="display: none;">
+        <span aria-hidden="true">&times;</span>
+        <p>🔴  Machine is not on</p>
+      </div>
+      <div class="notification isbusy" style="display: none;">
+        <span aria-hidden="true">&times;</span>
+        <p>💢  Machine is busy!</p>
+      </div>
+    </div>
+    <div class="notif" style="display: none;"><p>{{jsonfile}}</p></div>
+    
+    <div class="container">
+      <div class="something" data-aos="fade-up">
+        <div class="paragraph">
+          <p>Smart Coffee Machine</p>
+        </div>
+        <div class="image">
+          <img
+            src="../static/a7d9c70b2356cf17842190c0ff51e760.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div class="buttonn">
+          <button
+            type="button"
+            class="btn"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            id="program"
+          >
+           <img src="../static/calendar.png" alt="" srcset="">
+          </button>
+          <button
+            type="button"
+            class="btn viewSchedule"
+            id="viewSchedule"
+          >
+           <img src="../static/iconmonstr-eye-6-48.png" alt="" srcset="">
+          </button>
+          <button
+            type="button"
+            class="btn"
+            data-toggle="modal"
+            data-target="#prepareNow"
+            id="now"  
+          >
+            <img src="../static/coffeIcon.png" alt="" srcset="">
+          </button>
+      </div>
+      <div class="isActive"><p>{{status}}</p></div>
+    </div>
+
+    <!-- The Modal for preparing now starts here -->
+
+    <div
+    class="modal fade"
+    id="prepareNow"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Choose beverage type:</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form
+            class="schedule_form2"
+            action="#"
+            method="POST"
+            id="schedule_form2"
+          >
+          <div class="form-group cups2_form">
+              <label for="cups2">Choose number of cups (1 or 2):</label>
+              <input class="form-control cups2" type="number" max="2" min="1" value="1"/>
+          </div>
+            <div class="form-group time_form">
+              <input class="form-control extra2" type="text" readonly/>
+            </div>
+          <div class="coffeeOptions2">
+            <div class="Espresso">
+              <img src="../static/espresso.png" alt="" srcset="" />
+              <p>Espresso</p>
+            </div>
+            <div class="DoubleEspresso">
+              <img src="../static/double espresso.png" alt="" srcset="" />
+              <p>Double Espresso</p>
+            </div>
+            <div class="Americano" style="margin-left: 36px">
+              <img src="../static/americano.png" alt="" srcset="" />
+              <p>Americano</p>
+            </div>
+            <div class="HotWater" style="margin-left: 58px">
+              <img src="../static/hot water.png" alt="" srcset="" />
+              <p>Hot Water</p>
+            </div>
+            <input type="button" class="btn btn-primary coffee2" value="Confirm beverage"></input> 
+          </div>
+         </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- The Modal for the schedule start from here -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Program</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form
+              class="schedule_form"
+              action="/set_schedule"
+              method="POST"
+              id="schedule_form"
+            >
+            <div class="form-group cups_form">
+                <label for="cups">Choose number of cups (1 or 2):</label>
+                <input class="form-control cups" id="cups" type="number" max="2" min="1" value="1" name="cups"/>
+              </div>
+              <div class="form-group repeat_form">
+                <label for="repeat">Repeat:</label>
+                <select class="form-control repeat" id="repeat" name="repeat">
+                  <option value="0">Never</option>
+                  <option value="1">Every Day</option>
+                  <option value="2">Every Week</option>
+                </select>
+              </div>
+              <div class="form-group day_form">
+                <label for="day">Choose day to repeat:</label>
+                <select class="form-control day" id="day" name="day">
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday">Saturday</option>
+                  <option value="Sunday">Sunday</option>
+                </select>
+              </div>
+              <div class="form-group date_form">
+                <label for="date">Choose the date:</label>
+                <input class="form-control date" type="date" id="date" name="date"/>
+              </div>
+              <div class="form-group time_form">
+                <label for="time">Choose the time:</label>
+                <input class="form-control time" type="time" id="time" min="00:00" value="00:00" name="time"/>
+                <input class="form-control extra" type="text" id="coffeetype" name="coffeetype"/>
+              </div>
+            </form>
+            <div class="coffeeOptions">
+              <div class="Espresso">
+                <img src="../static/espresso.png" alt="" srcset="" />
+                <p>Espresso</p>
+              </div>
+              <div class="DoubleEspresso">
+                <img src="../static/double espresso.png" alt="" srcset="" />
+                <p>Double Espresso</p>
+              </div>
+              <div class="Americano" style="margin-left: 36px">
+                  <img src="../static/americano.png" alt="" srcset="" />
+                  <p>Americano</p>
+                </div>
+                <div class="HotWater" style="margin-left: 58px">
+                  <img src="../static/hot water.png" alt="" srcset="" />
+                  <p>Hot Water</p>
+                </div>
+            </div>
+            <div class="form-group">
+              <button type="button" class="btn btn-primary coffee">
+                Choose beverage type
+              </button>
+              <button type="button" class="btn btn-primary coffee_back">
+                Back
+              </button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary submition">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- The Modal for schedule ends here -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="../static/app.js"></script>
+  </body>
+</html>
